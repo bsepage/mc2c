@@ -14,7 +14,8 @@
 
 /* ************************************************** */
 
-class map {
+class map
+{
 private:
 	void* 				sp;
 	const void* 			bp;
@@ -39,8 +40,10 @@ inline map::map(size_t _len)
 	: bp (NULL), ep (NULL), len (_len)
 {
 	sp = mmap(0, len, MMAP_PROT, MMAP_FLAGS, -1, 0);
-	if (sp==(void*)-1) { LOGERROR("%s", "mmap\n"); }
-	if (mlock(sp, len)) { LOGERROR("%s", "mlock\n"); }
+	if (sp==(void*)-1)
+		LOGERROR("%s", "mmap\n");
+	if (mlock(sp, len))
+		LOGERROR("%s", "mlock\n");
 	bp = sp;
 	ep = reinterpret_cast<void *>(reinterpret_cast<uint8_t *>(sp)+len);
 	ref.fill(0);
@@ -48,8 +51,10 @@ inline map::map(size_t _len)
 
 /* ************************************************** */
 
-inline map::~map(void) {
-	if (munmap((void*) bp, len)) { LOGERROR("%s", "munmap\n"); }
+inline map::~map(void)
+{
+	if (munmap((void*) bp, len))
+		LOGERROR("%s", "munmap\n");
 	sp = NULL;
 	bp = NULL;
 	ep = NULL;

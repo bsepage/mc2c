@@ -18,7 +18,8 @@ const std::array<bool, 5> map::da(void) const
 
 void map::print(std::array<bool, 5> _da) const
 {
-	for (auto& bit: _da) { std::cout << bit; }
+	for (auto& bit: _da)
+		std::cout << bit;
 	std::cout << std::endl;
 }
 
@@ -28,11 +29,14 @@ const uint64_t map::va2pa(void) const
 {
 	uint64_t fno (0), off (0);
 	FILE *pagemap = fopen("/proc/self/pagemap", "rb");
-	if (pagemap==NULL) { LOGERROR("%s", "fopen\n"); }
+	if (pagemap==NULL)
+		LOGERROR("%s", "fopen\n");
 	off = ((uint64_t) sp / (uint64_t) getpagesize()) * 8;
-	if (fseek(pagemap, (long) off, SEEK_SET)) { LOGERROR("%s", "fseek\n"); }
+	if (fseek(pagemap, (long) off, SEEK_SET))
+		LOGERROR("%s", "fseek\n");
 	fread(&fno, 1, 7, pagemap);
-	if (fclose(pagemap)) { LOGERROR("%s", "fclose\n"); }
+	if (fclose(pagemap))
+		LOGERROR("%s", "fclose\n");
 	return ((fno & 0x7fffffffffffff) << 12) + ((uint64_t) sp % (uint64_t) getpagesize());
 }
 
@@ -49,7 +53,8 @@ const std::array<bool, 5> map::pa2da(const uint64_t pa) const
 
 bool map::search(void)
 {
-	if (sp>=ep) { return false; }
+	if (sp>=ep)
+		return false;
 	sp = reinterpret_cast<void *>(reinterpret_cast<uint8_t *>(sp)+512);
 	return (pa2da(va2pa())==ref) ? true : search();
 }
