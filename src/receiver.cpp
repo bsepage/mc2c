@@ -92,6 +92,6 @@ int main(int argc, char *argv[])
 	record(msr, "sim/measures.dat");
 	LOGINFO("%s", "measurements recorded\n");
 
-    return 0;
+	return 0;
 }
 

@@ -15,7 +15,7 @@ It is required to have the receiver and sender to start communicating at the sam
 - sudo taskset 0x1 ./bin/sender *n*
 - sudo taskset 0x2 ./bin/receiver *n*
 
-Where *n* is the time at which sender and receiver launch the covert channel. For instance, if "./bin/gettime" outputs 70 seconds, set <*n* to 90 seconds in order to give you 20 seconds to write both commands.
+Where *n* is the time at which sender and receiver launch the covert channel. For instance, if "./bin/gettime" outputs 70 seconds, set *n* to 90 seconds in order to give you 20 seconds to write both commands.
 
 The output file is written by the receiver in the sim/ folder. It is **highly** recommended to perform post-processing on the data set in order to visualize data properly. Alternatively, you can execute the attack in a low noise environment (e.g. run level 1).
 
